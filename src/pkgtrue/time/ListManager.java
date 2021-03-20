@@ -21,8 +21,8 @@ public class ListManager {
         listManager.put(listName, empty);
     }
     
-    public void addTask(String listName, String taskName)
+    public void addTask(String listName, Double time)
     {
-        
+        Task temp = new Task(listName, time);
     }
 }

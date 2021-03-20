@@ -11,4 +11,22 @@ public class Task {
         this.taskName = name;
         this.averageTime = time;
     }
+
+    public String getTaskName() {
+        return taskName;
+    }
+
+    public void setTaskName(String taskName) {
+        this.taskName = taskName;
+    }
+
+    public Double getAverageTime() {
+        return averageTime;
+    }
+
+    public void setAverageTime(Double averageTime) {
+        this.averageTime = averageTime;
+    }
+    
+    
 }
