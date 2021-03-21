@@ -8,6 +8,8 @@ package pkgtrue.time;
 import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -47,7 +49,7 @@ public class LoginActivity extends JFrame{
         this.add(passwordField, "1, 8");
         this.add(loginButton, "1, 10");
         
-        
+        loginButton.addActionListener(new LoginListener());
         
         this.setTitle("Login");
         this.setSize(325, 675);
@@ -56,6 +58,16 @@ public class LoginActivity extends JFrame{
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
    
+    
+    class LoginListener implements ActionListener
+    {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            new ListOfLists();
+        }
+        
+    }
     
     
 }
