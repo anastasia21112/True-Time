@@ -36,24 +36,30 @@ public class SingleListActivity {
         window.setResizable(false);
         window.setContentPane(new ImagePanel());
         
-        double windowSize[][] = {{40,75,25,45,100,40}, // Columns
-            {75,25,25, 25, 25, 325, 25, 25}}; // Rows
+        double windowSize[][] = {{40,75,25,30, 15,100,40}, // Columns
+            {75,25,25, 25, 25, 275,25,25, 25, 25}}; // Rows
         window.setLayout(new TableLayout(windowSize));
         
         JButton backButton = new JButton("Back");
         window.add(backButton,"1,1");
         
         JButton addTask = new JButton("Add Task");
-        window.add(addTask,"4,1");
+        window.add(addTask,"5,1");
         
         JLabel pageTitle = new JLabel(listName + " List", SwingConstants.CENTER);
         pageTitle.setFont(new Font("", Font.PLAIN, 20));
-        window.add(pageTitle, "1,3, 4, 3");
+        window.add(pageTitle, "1,3, 5, 3");
+        
+        JButton timeTask = new JButton("Time Task");
+        window.add(timeTask, "1,7, 2, 7");
+        
+        JButton deleteTask = new JButton("Delete Task");
+        window.add(deleteTask, "4,7, 5,7");
         
         JButton plusButton = new JButton("Delete List");
-        window.add(plusButton, "1,7, 4, 7");
+        window.add(plusButton, "1,9, 5, 9");
 
-        window.add(taskScroll,"1,5, 4, 5");
+        window.add(taskScroll,"1,5, 5, 5");
         
         
         window.setVisible(true);
