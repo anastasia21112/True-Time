@@ -35,12 +35,14 @@ public class SingleListActivity {
     public static JPanel taskPanel;
     public static ButtonGroup taskGroup = new ButtonGroup();
     
+    public static JLabel totalTime = new JLabel("Total Time: 0");
     public static ListManager manager = new ListManager();
     
     public SingleListActivity(String listName)
     {
         taskPanel = new JPanel();
         taskScroll = new JScrollPane(taskPanel);
+        
         
         window = new JFrame();
         window.setTitle("True Time");
@@ -49,13 +51,15 @@ public class SingleListActivity {
         window.setContentPane(new ImagePanel());
         
         double windowSize[][] = {{40,75,25,30, 15,100,40}, // Columns
-            {75,25,25, 25, 25, 275,25,25, 25, 25}}; // Rows
+            {75,25,25, 25, 25, 275,25,25, 25, 25, 20, 25}}; // Rows
         window.setLayout(new TableLayout(windowSize));
         
         JButton backButton = new JButton("Back");
         window.add(backButton,"1,1");
         backButton.addActionListener(new BackListener());
         
+        window.add(totalTime, "1, 10");
+        totalTime.setText("Total Time: " + manager.getTotalTime(listName));
         JButton addTask = new JButton("Add Task");
         addTask.addActionListener(new ActionListener()
         {

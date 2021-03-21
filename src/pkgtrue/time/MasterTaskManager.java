@@ -52,6 +52,8 @@ public class MasterTaskManager
        return new ArrayList<Double>();
    }
    
+   
+   
    public double calculateAverageTime(String taskName, Double taskTime)
    {
         ArrayList<Double> temp = getDurations(taskName);

@@ -42,6 +42,20 @@ public class ListManager {
         return keyArrayList;
     }
     
+    public double getTotalTime(String listName)
+    {
+        double totalTime = 0; 
+        if(!listManager.get(listName).isEmpty())
+        {
+            for(int i = 0; i < listManager.get(listName).size(); i++)
+            {
+                totalTime += listManager.get(listName).get(i).getAverageTime();
+            }
+        }
+        
+        return totalTime;
+    }
+    
     public ArrayList returnContents (String listName)
     {
         ArrayList<String> listContents = new ArrayList<String>();
