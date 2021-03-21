@@ -5,13 +5,20 @@
  */
 package pkgtrue.time;
 
+import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import layout.TableLayout;
@@ -26,6 +33,9 @@ public class SingleListActivity {
     public static JPanel backgroundPanel;
     public static JScrollPane taskScroll;
     public static JPanel taskPanel;
+    public static ButtonGroup taskGroup = new ButtonGroup();
+    
+    public static ListManager manager = new ListManager();
     
     public SingleListActivity(String listName)
     {
@@ -72,8 +82,37 @@ public class SingleListActivity {
 
         window.add(taskScroll,"1,5, 5, 5");
         
+        taskPanel.removeAll();
+        displayContents(manager.returnContents(listName));
+        taskScroll.validate();
+        taskScroll.repaint();
+        
+        displayContents(manager.returnContents(listName));
         
         window.setVisible(true);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
+    
+    public void displayContents(ArrayList<String> contents)
+    {
+        if(!contents.isEmpty())
+        {
+            
+            for(int i = 0; i < contents.size(); i++)
+            {
+                taskPanel.setLayout(new BoxLayout(taskPanel, BoxLayout.Y_AXIS));
+
+                String taskInfo = contents.get(i);
+                JRadioButton taskButton = new JRadioButton(taskInfo);
+                taskButton.setActionCommand(taskInfo);
+                taskButton.setAlignmentX(Component.LEFT_ALIGNMENT);
+
+                taskGroup.add(taskButton);         
+                taskPanel.add(taskButton);
+
+                taskPanel.add(Box.createRigidArea(new Dimension(0, 5)));
+
+            }
+        }
     }
+}

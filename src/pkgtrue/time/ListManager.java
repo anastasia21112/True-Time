@@ -41,4 +41,20 @@ public class ListManager {
         
         return keyArrayList;
     }
+    
+    public ArrayList returnContents (String listName)
+    {
+        ArrayList<String> listContents = new ArrayList<String>();
+        
+        if(!listManager.get(listName).isEmpty())
+        {
+            for(int i = 0; i < listManager.get(listName).size(); i++)
+            {
+                Task temp = (Task)listManager.get(listName).get(i);
+                listContents.add(temp.getTaskName() + " " + temp.getAverageTime());
+            }
+        }
+        
+        return listContents;
+    }
 }

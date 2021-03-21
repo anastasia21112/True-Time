@@ -78,6 +78,8 @@ public class CreateNewTask {
             // listText is always in this format: For List: "name"
             String listName = listText.substring(10);
             manager.addTask(listName, taskName, time);
+            
+            new SingleListActivity(listName);
         }
     }
 }
