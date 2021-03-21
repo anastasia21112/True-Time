@@ -65,11 +65,17 @@ public class UserDashboard {
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
+    public void closeGUI()
+    {
+        window.dispose();
+    }
+    
     class LogoutListener implements ActionListener
     {
         @Override
         public void actionPerformed(ActionEvent e)
         {
+            closeGUI();
             new LoginActivity();
         }
     }
@@ -78,6 +84,7 @@ public class UserDashboard {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            closeGUI();
             new ListOfLists();
         }
         

@@ -58,7 +58,7 @@ public class SingleListActivity {
         window.add(backButton,"1,1");
         backButton.addActionListener(new BackListener());
         
-        window.add(totalTime, "1, 10");
+        window.add(totalTime, "1, 4, 5");
         totalTime.setText("Total Time: " + manager.getTotalTime(listName));
         JButton addTask = new JButton("Add Task");
         addTask.addActionListener(new ActionListener()
@@ -66,6 +66,7 @@ public class SingleListActivity {
             @Override
             public void actionPerformed(ActionEvent e)
             {
+                closeGUI();
                 new CreateNewTask(listName);
             }
         });
@@ -82,6 +83,7 @@ public class SingleListActivity {
             @Override
             public void actionPerformed(ActionEvent e)
             {
+                closeGUI();
                 new StopwatchActivity();
             }
         });
@@ -127,14 +129,21 @@ public class SingleListActivity {
         }
     }
     
+    public void closeGUI()
+    {
+        window.dispose();
+    }
 
     private class BackListener implements ActionListener
     {
         @Override
         public void actionPerformed(ActionEvent e)
         {
+            closeGUI();
             new ListOfLists();
+            
         }
+       
     }
 
 }

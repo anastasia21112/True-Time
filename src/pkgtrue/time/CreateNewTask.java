@@ -70,11 +70,17 @@ public class CreateNewTask {
         
     }
     
+    public void closeGUI()
+    {
+        window.dispose();
+    }
+    
     private class BackListener implements ActionListener
     {
         @Override
         public void actionPerformed(ActionEvent e)
         {
+            closeGUI();
             new SingleListActivity(listTitle.getText().substring(10));
         }
     }
@@ -102,6 +108,7 @@ public class CreateNewTask {
                 masterManager.addMasterTask(listText, time);
                 // this needs to be fixed becuase the time added needs to be the average
                 manager.addTask(listName, taskName, masterManager.calculateAverageTime(taskName, time));
+                closeGUI();
                 new SingleListActivity(listName);
             } else {
                 JOptionPane.showMessageDialog(window, "Task Already Created", "Error", JOptionPane.ERROR_MESSAGE);

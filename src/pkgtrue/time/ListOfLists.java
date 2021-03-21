@@ -82,11 +82,17 @@ public class ListOfLists
         }
     }
     
+    public void closeGUI()
+    {
+        window.dispose();
+    }
+    
     private class BackListener implements ActionListener
     {
         @Override
         public void actionPerformed(ActionEvent e)
         {
+            closeGUI();
             new UserDashboard();
         }
     }
@@ -126,6 +132,7 @@ public class ListOfLists
         public void actionPerformed(ActionEvent e)
         {
             String listName = e.getActionCommand();
+            closeGUI();
             new SingleListActivity(listName);
         }
     }

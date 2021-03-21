@@ -63,6 +63,11 @@ public class LoginActivity extends JFrame{
     public String getUsername() {   return username;    };
     public String getPassword() {   return password;    };
     
+    public void closeGUI()
+    {
+        this.dispose();
+    }
+    
     class LoginListener implements ActionListener
     {
 
@@ -70,6 +75,7 @@ public class LoginActivity extends JFrame{
         public void actionPerformed(ActionEvent e) {
             username = usernameField.getText();
             password = passwordField.getText();
+            closeGUI();
             new UserDashboard();
         }
         
