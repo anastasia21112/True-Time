@@ -18,44 +18,61 @@ public class MasterTaskManager
         allTasks = new HashMap<String, ArrayList<Double>>();
     }
 
-    public void addTask(String taskName, Double time,String listName)
-    {
-        if(this.allTasks.containsKey(listName))
-        {
-            if(this.listManager.containsTask(taskName)) //if the task already exists, add it to the list manager after facotring the newest estimate into the predicted time
-            {
-                ArrayList<Double> timesForTask = allTasks.get(taskName);
-                timesForTask.add(time);
-                this.listManager.addTaskToList(taskName, average(timesForTask),listName);
-                return;
-            }
-            else // if the task is new, add it to the allTasks list and then the list manager
-            {
-                allTasks.put(taskName, new ArrayList<Double>());
-                allTasks.get(taskName).add(time);
-
-                this.listManager.addTaskToList(taskName, time,listName);
-            }
-        }
-    }
-
-    public void removeTask(String taskName, String listName)
+    public void addMasterTask(String taskName, Double time)
     {
         if(this.allTasks.containsKey(taskName))
         {
-            this.listManager.removeTaskFromList(taskName, listName);
-
+            ArrayList<Double> durations = getDurations(taskName);
+            durations.add(time);
+            this.allTasks.put(taskName, durations);
+        }
+        else
+        {
+            ArrayList<Double> durations = new ArrayList<>();
+            durations.add(time);
+            this.allTasks.put(taskName, durations);
         }
     }
 
-    public Double average(ArrayList<Double> taskTimes)
-    {
-        Double total = new Double (0);
-        for(Double time: taskTimes)
-            total += time;
+   public ArrayList<Double> getDurations(String taskName)
+   {
+       
+       for(HashMap.Entry entry : allTasks.entrySet())
+        {
+            String key = (String) entry.getKey();
+            ArrayList<Double> value = (ArrayList<Double>) entry.getValue();
+            if(taskName.equals(key))
+            {
+                return value; 
+            }
+        }
+       return new ArrayList<Double>();
+   }
+   
+   public double calculateAverageTime(String taskName, Double taskTime)
+   {
+        ArrayList<Double> temp = getDurations(taskName);
 
-        return total / taskTimes.size();
-    }
+        double sum = 0.0;
+        double average = 0.0;
+
+        if(!temp.isEmpty())
+        {
+            for(int i = 0; i < temp.size(); i++)
+            {
+                sum += temp.get(i);
+            }
+            
+            average = sum/temp.size();
+        }
+        else
+        {
+            average = taskTime;
+        }
+            
+
+        return average;
+   }
 
     public String toString()
     {

@@ -70,7 +70,7 @@ public class LoginActivity extends JFrame{
         public void actionPerformed(ActionEvent e) {
             username = usernameField.getText();
             password = passwordField.getText();
-            new ListOfLists();
+            new UserDashboard();
         }
         
     }
