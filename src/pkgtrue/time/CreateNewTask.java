@@ -21,6 +21,7 @@ public class CreateNewTask {
     public static JTextField name;
     public static JTextField duration;
     public static JLabel listTitle;
+    public static JButton backButton;
     
     public static ListManager manager = new ListManager();
     public static MasterTaskManager masterManager = new MasterTaskManager();
@@ -33,8 +34,9 @@ public class CreateNewTask {
         window.setContentPane(new ImagePanel());
         
         double windowSize[][] = {{50, 100, 75, 50}, // Columns
-            {100, 25, 25, 25, 25, 25, 25, 25, 200, 25}}; // Rows
+            {100, 25, 25, 25, 25, 25, 25, 25, 200, 25, 10, 25}}; // Rows
         window.setLayout(new TableLayout(windowSize));
+        
         
         JLabel pageTitle = new JLabel("Create a New Task", SwingConstants.LEFT);
         pageTitle.setFont(new Font("", Font.PLAIN, 20));
@@ -57,7 +59,10 @@ public class CreateNewTask {
         JButton plusButton = new JButton("Create Task");
         plusButton.addActionListener(new NewTaskListener());
         window.add(plusButton, "1, 9, 3");
-
+        
+        backButton = new JButton("Back");
+        window.add(backButton, "1, 11, 3");
+        backButton.addActionListener(new BackListener());
         
         window.setVisible(true);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -65,27 +70,42 @@ public class CreateNewTask {
         
     }
     
+    private class BackListener implements ActionListener
+    {
+        @Override
+        public void actionPerformed(ActionEvent e)
+        {
+            new SingleListActivity(listTitle.getText().substring(10));
+        }
+    }
     private class NewTaskListener implements ActionListener
     {
         @Override
         public void actionPerformed(ActionEvent e)
         {
             String taskName = name.getText();
+            String listText = listTitle.getText();
+            // listText is always in this format: For List: "name"
+            String listName = listText.substring(10);
             String taskDuration= duration.getText();
             Double time = Double.parseDouble(taskDuration);
             
-            String listText = listTitle.getText();
-            
-            masterManager.addMasterTask(listText, time);
-            
-            // listText is always in this format: For List: "name"
-            String listName = listText.substring(10);
-            
-            // this needs to be fixed becuase the time added needs to be the average
-            manager.addTask(listName, taskName, masterManager.calculateAverageTime(taskName, time));
+            boolean repeat = false;
+            for(int i = 0; i < manager.returnTasks(listName).size(); i++)
+            {
+                if(taskName.equals(manager.returnTasks(listName).get(i)))
+                    repeat = true;
+            }
 
-            
-            new SingleListActivity(listName);
+            if(!repeat)
+            {
+                masterManager.addMasterTask(listText, time);
+                // this needs to be fixed becuase the time added needs to be the average
+                manager.addTask(listName, taskName, masterManager.calculateAverageTime(taskName, time));
+                new SingleListActivity(listName);
+            } else {
+                JOptionPane.showMessageDialog(window, "Task Already Created", "Error", JOptionPane.ERROR_MESSAGE);
+            }
 
             
         }

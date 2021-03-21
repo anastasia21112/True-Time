@@ -12,12 +12,15 @@ public class MasterTaskManager
     //Todo: discuss having reading and writing in this class, and use list manager to just add stuff to UI
     public static ListManager listManager;
     public static HashMap<String, ArrayList<Double>> allTasks;
+   
 
     public MasterTaskManager()
     {
         allTasks = new HashMap<String, ArrayList<Double>>();
+        
     }
 
+   
     public void addMasterTask(String taskName, Double time)
     {
         if(this.allTasks.containsKey(taskName))

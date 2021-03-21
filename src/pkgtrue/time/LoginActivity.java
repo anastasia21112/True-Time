@@ -32,6 +32,8 @@ public class LoginActivity extends JFrame{
     private JLabel usernameLabel = new JLabel("Username: ");
     private JLabel passwordLabel = new JLabel("Password: ");
     private JLabel logoLabel = new JLabel();
+    private String username = "";
+    private String password = "";
     
     public LoginActivity()
     {
@@ -58,12 +60,16 @@ public class LoginActivity extends JFrame{
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
    
+    public String getUsername() {   return username;    };
+    public String getPassword() {   return password;    };
     
     class LoginListener implements ActionListener
     {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            username = usernameField.getText();
+            password = passwordField.getText();
             new UserDashboard();
         }
         

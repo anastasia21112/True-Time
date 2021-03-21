@@ -47,7 +47,9 @@ public class ListOfLists
         
         // Adds Listeners to Buttons
         plusButton.addActionListener(new ListListener());
+        backButton.addActionListener(new BackListener());
         
+        refresh();
         
         window.setVisible(true);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -80,6 +82,14 @@ public class ListOfLists
         }
     }
     
+    private class BackListener implements ActionListener
+    {
+        @Override
+        public void actionPerformed(ActionEvent e)
+        {
+            new UserDashboard();
+        }
+    }
     private class ListListener implements ActionListener
     {
         @Override
