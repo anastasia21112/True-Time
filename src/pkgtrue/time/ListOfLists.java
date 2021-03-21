@@ -72,6 +72,8 @@ public class ListOfLists
         {
             String name = (String) temp.get(i);
             JButton nameButton = new JButton(name);
+            nameButton.setActionCommand(name);
+            nameButton.addActionListener(new ButtonListener());
             listPanel.add(nameButton);
             nameButton.setAlignmentX(Component.CENTER_ALIGNMENT);
             listPanel.add(Box.createRigidArea(new Dimension(0,5)));
@@ -105,6 +107,16 @@ public class ListOfLists
                 manager.addList(listName);
                 refresh();
             }
+        }
+    }
+    
+    private class ButtonListener implements ActionListener
+    {
+        @Override
+        public void actionPerformed(ActionEvent e)
+        {
+            String listName = e.getActionCommand();
+            new SingleListActivity(listName);
         }
     }
 }
