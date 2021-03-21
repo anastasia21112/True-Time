@@ -54,6 +54,7 @@ public class SingleListActivity {
         
         JButton backButton = new JButton("Back");
         window.add(backButton,"1,1");
+        backButton.addActionListener(new BackListener());
         
         JButton addTask = new JButton("Add Task");
         addTask.addActionListener(new ActionListener()
@@ -111,6 +112,15 @@ public class SingleListActivity {
                 taskPanel.add(Box.createRigidArea(new Dimension(0, 5)));
 
             }
+        }
+    }
+    
+    private class BackListener implements ActionListener
+    {
+        @Override
+        public void actionPerformed(ActionEvent e)
+        {
+            new ListOfLists();
         }
     }
 }

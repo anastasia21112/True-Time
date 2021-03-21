@@ -22,6 +22,7 @@ public class UserDashboard {
     public static JLabel dayLabel;
     public static JButton helpButton;
     public static JButton viewListButton;
+    public static JButton logoutButton;
     
     public UserDashboard()
     {
@@ -32,7 +33,7 @@ public class UserDashboard {
         window.setContentPane(new ImagePanel());
 
         double windowSize[][] = {{50, 225, 50}, // Columns
-        {75, 250, 50,75, 25, 30, 30, 125}}; // Rows
+        {75, 250, 50,75, 25, 30, 30, 30, 20, 20}}; // Rows
         window.setLayout(new TableLayout(windowSize));
         
         ImageIcon icon = new ImageIcon(new ImageIcon("images/logo_part_transparent.png").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
@@ -53,6 +54,10 @@ public class UserDashboard {
         viewListButton.addActionListener(new ListListener());
         window.add(viewListButton, "1, 5");
         
+        logoutButton = new JButton("Logout");
+        logoutButton.addActionListener(new LogoutListener());
+        window.add(logoutButton, "1, 7");
+        
         helpButton = new JButton("Get Help");
         window.add(helpButton, "1, 6");
 
@@ -60,6 +65,14 @@ public class UserDashboard {
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
+    class LogoutListener implements ActionListener
+    {
+        @Override
+        public void actionPerformed(ActionEvent e)
+        {
+            new LoginActivity();
+        }
+    }
     class ListListener implements ActionListener
     {
 
