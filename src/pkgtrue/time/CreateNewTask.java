@@ -23,6 +23,7 @@ public class CreateNewTask {
     public static JLabel listTitle;
     
     public static ListManager manager = new ListManager();
+    public static MasterTaskManager masterManager = new MasterTaskManager();
     
     public CreateNewTask(String listName){
         window = new JFrame();
@@ -78,8 +79,11 @@ public class CreateNewTask {
             // listText is always in this format: For List: "name"
             String listName = listText.substring(10);
             manager.addTask(listName, taskName, time);
+
             
             new SingleListActivity(listName);
+
+            masterManager.addMasterTask(listText, time);
         }
     }
 }
