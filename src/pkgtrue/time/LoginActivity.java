@@ -64,7 +64,7 @@ public class LoginActivity extends JFrame{
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            new ListOfLists();
+            new UserDashboard();
         }
         
     }

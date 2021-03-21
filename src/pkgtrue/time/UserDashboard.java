@@ -50,6 +50,7 @@ public class UserDashboard {
         window.add(dayLabel, "1, 3");
         
         viewListButton = new JButton("View To Do Lists");
+        viewListButton.addActionListener(new ListListener());
         window.add(viewListButton, "1, 5");
         
         helpButton = new JButton("Get Help");
@@ -59,5 +60,14 @@ public class UserDashboard {
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
+    class ListListener implements ActionListener
+    {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            new ListOfLists();
+        }
+        
+    }
     
 }
