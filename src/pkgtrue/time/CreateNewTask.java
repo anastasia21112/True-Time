@@ -76,14 +76,18 @@ public class CreateNewTask {
             
             String listText = listTitle.getText();
             
+            masterManager.addMasterTask(listText, time);
+            
             // listText is always in this format: For List: "name"
             String listName = listText.substring(10);
-            manager.addTask(listName, taskName, time);
+            
+            // this needs to be fixed becuase the time added needs to be the average
+            manager.addTask(listName, taskName, masterManager.calculateAverageTime(taskName, time));
 
             
             new SingleListActivity(listName);
 
-            masterManager.addMasterTask(listText, time);
+            
         }
     }
 }

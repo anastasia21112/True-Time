@@ -36,6 +36,7 @@ public class MasterTaskManager
 
    public ArrayList<Double> getDurations(String taskName)
    {
+       
        for(HashMap.Entry entry : allTasks.entrySet())
         {
             String key = (String) entry.getKey();
@@ -46,6 +47,31 @@ public class MasterTaskManager
             }
         }
        return new ArrayList<Double>();
+   }
+   
+   public double calculateAverageTime(String taskName, Double taskTime)
+   {
+        ArrayList<Double> temp = getDurations(taskName);
+
+        double sum = 0.0;
+        double average = 0.0;
+
+        if(!temp.isEmpty())
+        {
+            for(int i = 0; i < temp.size(); i++)
+            {
+                sum += temp.get(i);
+            }
+            
+            average = sum/temp.size();
+        }
+        else
+        {
+            average = taskTime;
+        }
+            
+
+        return average;
    }
 
     public String toString()

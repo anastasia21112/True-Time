@@ -87,8 +87,6 @@ public class SingleListActivity {
         taskScroll.validate();
         taskScroll.repaint();
         
-        displayContents(manager.returnContents(listName));
-        
         window.setVisible(true);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
