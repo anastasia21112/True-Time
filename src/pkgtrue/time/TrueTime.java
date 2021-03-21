@@ -17,8 +17,8 @@ public class TrueTime {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        // new ListOfLists();
-        new StopwatchActivity();
+        new ListOfLists();
+        //new StopwatchActivity();
     }
     
 }
