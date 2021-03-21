@@ -72,6 +72,14 @@ public class SingleListActivity {
         window.add(pageTitle, "1,3, 5, 3");
         
         JButton timeTask = new JButton("Time Task");
+        timeTask.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                new StopwatchActivity();
+            }
+        });
         window.add(timeTask, "1,7, 2, 7");
         
         JButton deleteTask = new JButton("Delete Task");
@@ -113,4 +121,6 @@ public class SingleListActivity {
             }
         }
     }
+    
+    
 }
