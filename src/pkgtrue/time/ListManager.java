@@ -22,9 +22,10 @@ public class ListManager {
         listManager.put(listName, empty);
     }
     
-    public void addTask(String listName, Double time)
+    public void addTask(String listName, String taskName, Double time)
     {
-        Task temp = new Task(listName, time);
+        Task temp = new Task(taskName, time);
+        listManager.get(listName).add(temp);
     }
     
     public ArrayList keySet()

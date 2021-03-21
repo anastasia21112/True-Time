@@ -46,7 +46,14 @@ public class SingleListActivity {
         window.add(backButton,"1,1");
         
         JButton addTask = new JButton("Add Task");
-        addTask.addActionListener(new AddTaskListener());
+        addTask.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                new CreateNewTask(listName);
+            }
+        });
         window.add(addTask,"5,1");
         
         
@@ -69,13 +76,4 @@ public class SingleListActivity {
         window.setVisible(true);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
-    
-    private class AddTaskListener implements ActionListener
-    {
-        @Override
-        public void actionPerformed(ActionEvent e)
-        {
-            new CreateNewTask();
-        }
     }
-}
