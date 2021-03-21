@@ -6,6 +6,8 @@
 package pkgtrue.time;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -44,7 +46,9 @@ public class SingleListActivity {
         window.add(backButton,"1,1");
         
         JButton addTask = new JButton("Add Task");
+        addTask.addActionListener(new AddTaskListener());
         window.add(addTask,"5,1");
+        
         
         JLabel pageTitle = new JLabel(listName + " List", SwingConstants.CENTER);
         pageTitle.setFont(new Font("", Font.PLAIN, 20));
@@ -64,5 +68,14 @@ public class SingleListActivity {
         
         window.setVisible(true);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+    
+    private class AddTaskListener implements ActionListener
+    {
+        @Override
+        public void actionPerformed(ActionEvent e)
+        {
+            new CreateNewTask();
+        }
     }
 }

@@ -1,14 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package pkgtrue.time;
 import java.util.*;
 import javax.swing.*;
 import java.awt.*;
 import layout.TableLayout;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  *
@@ -20,6 +18,8 @@ public class CreateNewTask {
     public static JPanel mainPanel;
     public static JPanel listPanel;
     public static JPanel placeHolder = new JPanel();
+    public static JTextField name;
+    public static JTextField duration;
     
     public CreateNewTask(){
         window = new JFrame();
@@ -37,20 +37,33 @@ public class CreateNewTask {
         window.add(pageTitle, "1, 1, 3");
         
         JLabel nameLabel = new JLabel("Name of Task: ");
-        JTextField name = new JTextField("Name");
+        name = new JTextField();
         window.add(nameLabel, "1, 3, 3");
         window.add(name, "2, 3, 3");
         
         JLabel durationLabel = new JLabel("<html>Estimated Time <br/>to Complete <br/> in Minutes: </html>");
-        JTextField duration = new JTextField("Duration");
+        duration = new JTextField();
         window.add(durationLabel, "1, 5, 3, 6");
         window.add(duration, "2, 6, 3, 5");
         
         JButton plusButton = new JButton("Create Task");
+        plusButton.addActionListener(new NewTaskListener());
         window.add(plusButton, "1, 8, 3");
 
         
         window.setVisible(true);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        
+    }
+    
+    private class NewTaskListener implements ActionListener
+    {
+        @Override
+        public void actionPerformed(ActionEvent e)
+        {
+            String taskName = name.getText();
+            String taskDuration= duration.getText();
+        }
     }
 }
