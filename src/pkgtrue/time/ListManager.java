@@ -9,11 +9,12 @@ public class ListManager {
     
     //HashMap<String, ArrayList<Task>>
     //HashMap<listName, arrayList of Tasks> 
-    public static HashMap<String, ArrayList<Task>> listManager = new HashMap<String, ArrayList<Task>>();
+    public static HashMap<String, ArrayList<Task>> listManager;
+    public static MasterTaskManager masterManager = new MasterTaskManager();
     
     public ListManager()
     {
-          
+          listManager = new HashMap<String, ArrayList<Task>>();
     }
     
     public void addList(String listName)
@@ -38,6 +39,15 @@ public class ListManager {
     {
         int indexofRemoval = findTask(listName, taskName);
         listManager.get(listName).remove(indexofRemoval);
+    }
+    
+    public void updateTask(String listName, String taskName)
+    {
+        int taskIndex = findTask(listName, taskName);
+        Task temp = listManager.get(listName).get(taskIndex);
+        double taskTime = temp.getAverageTime();
+        listManager.get(listName).get(taskIndex).setAverageTime(masterManager.calculateAverageTime(taskName, taskTime));
+ 
     }
     
     public int findTask(String listName, String taskName)

@@ -36,7 +36,7 @@ public class MasterTaskManager
             this.allTasks.put(taskName, durations);
         }
     }
-
+    
    public ArrayList<Double> getDurations(String taskName)
    {
        

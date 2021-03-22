@@ -59,6 +59,7 @@ public class StopwatchActivity extends JFrame
     public boolean timerOn = false;
     
     public static MasterTaskManager masterManager = new MasterTaskManager();
+    public static ListManager manager = new ListManager();
     
     public StopwatchActivity(String taskName, String listName)
     {
@@ -163,6 +164,7 @@ public class StopwatchActivity extends JFrame
                 double taskTime = hourMinute + Double.parseDouble(minute) + secondMinute;
                 
                 masterManager.addMasterTask(taskName, taskTime);
+                manager.updateTask(listName, taskName);
                 window.dispose();
                 new SingleListActivity(listName);
 

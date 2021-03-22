@@ -105,7 +105,7 @@ public class CreateNewTask {
 
             if(!repeat)
             {
-                masterManager.addMasterTask(listText, time);
+                masterManager.addMasterTask(listName, time);
                 // this needs to be fixed becuase the time added needs to be the average
                 manager.addTask(listName, taskName, masterManager.calculateAverageTime(taskName, time));
                 closeGUI();
@@ -114,7 +114,7 @@ public class CreateNewTask {
                 JOptionPane.showMessageDialog(window, "Task Already Created", "Error", JOptionPane.ERROR_MESSAGE);
             }
 
-            
+            manager.updateTask(listName, taskName);
         }
     }
 }
