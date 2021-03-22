@@ -84,13 +84,14 @@ public class SingleListActivity {
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                closeGUI();
-                String selectedTaskName = "";
+                String selectedTaskName;
                 if(taskGroup.getSelection() != null)
                 {
                     selectedTaskName = taskGroup.getSelection().getActionCommand();
+                    closeGUI();
+                    new StopwatchActivity(selectedTaskName, listName);
                 }
-                new StopwatchActivity(selectedTaskName, listName);
+                
             }
         });
         window.add(timeTask, "1,7, 2, 7");
