@@ -58,6 +58,8 @@ public class StopwatchActivity extends JFrame
         
     public boolean timerOn = false;
     
+    public static MasterTaskManager masterManager = new MasterTaskManager();
+    
     public StopwatchActivity(String taskName)
     {
         clock = Clock.systemDefaultZone();
@@ -242,6 +244,9 @@ public class StopwatchActivity extends JFrame
                 double secondMinute = (Double.parseDouble(second) / 60);
                 
                 double taskTime = hourMinute + Double.parseDouble(minute) + secondMinute;
+                
+                masterManager.addTimeToTask(taskName, taskTime);
+                
                 
                 //add to master map get name from the label at the top with task name
             }
