@@ -65,7 +65,7 @@ public class ListManager {
             for(int i = 0; i < listManager.get(listName).size(); i++)
             {
                 Task temp = (Task)listManager.get(listName).get(i);
-                listContents.add(temp.getTaskName() + " " + temp.getAverageTime());
+                listContents.add(temp.getTaskName() + ", " + temp.getAverageTime());
             }
         }
         

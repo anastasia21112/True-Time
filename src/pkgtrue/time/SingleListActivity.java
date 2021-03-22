@@ -84,7 +84,12 @@ public class SingleListActivity {
             public void actionPerformed(ActionEvent e)
             {
                 closeGUI();
-                new StopwatchActivity();
+                String selectedTaskName = "";
+                if(taskGroup.getSelection() != null)
+                {
+                    selectedTaskName = taskGroup.getSelection().getActionCommand();
+                }
+                new StopwatchActivity(selectedTaskName);
             }
         });
         window.add(timeTask, "1,7, 2, 7");
@@ -117,7 +122,8 @@ public class SingleListActivity {
 
                 String taskInfo = contents.get(i);
                 JRadioButton taskButton = new JRadioButton(taskInfo);
-                taskButton.setActionCommand(taskInfo);
+                int commaIndex = taskInfo.indexOf(",");
+                taskButton.setActionCommand(taskInfo.substring(0, commaIndex));
                 taskButton.setAlignmentX(Component.LEFT_ALIGNMENT);
 
                 taskGroup.add(taskButton);         
