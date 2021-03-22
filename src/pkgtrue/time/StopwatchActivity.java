@@ -60,7 +60,7 @@ public class StopwatchActivity extends JFrame
     
     public static MasterTaskManager masterManager = new MasterTaskManager();
     
-    public StopwatchActivity(String taskName)
+    public StopwatchActivity(String taskName, String listName)
     {
         clock = Clock.systemDefaultZone();
         window = new JFrame();
@@ -97,90 +97,7 @@ public class StopwatchActivity extends JFrame
         setShutdown(false);
         
         window.setVisible(true);
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                
-        /*
-        stopButton.addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-                //buttonClicked = false;
-                stopButton.getModel().setPressed(true);
-                timerOn = false; 
-                System.out.println("pressed");
-                
-            }
-        });
-        
-        resetButton.addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-                timerOn = false; 
-                timeLabel.setText("00 : 00 : 00");
-            }
-        });
-        
-        startButton.addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-                buttonClicked = true;
-                buttonGainFocus = true;
-                long startTime = System.currentTimeMillis();//gets time in miliseconds
-                stopButton.getModel().setPressed(false);
-                startButton.setSelected(false);
-                startButton.addFocusListener(new FocusListener()
-                {
-                    @Override
-                    public void focusGained(FocusEvent e) {
-                        //buttonGainFocus = true;
-                        System.out.println("focus gained");
-                    }
-
-                    @Override
-                    public void focusLost(FocusEvent e) 
-                    {
-                        buttonGainFocus = false;
-                        System.out.println("focus lost");
-                    }
-                });
-                while(buttonClicked)
-                {
-                       
-                       long elapsedTime = System.currentTimeMillis() - startTime;
-                       long elapsedSeconds = elapsedTime / 1000;
-                       long elapsedMinutes = elapsedSeconds / 60;
-                       long elapsedHours = elapsedMinutes / 60;
-
-
-                       timeLabel.setText(formatTime(elapsedHours) + " : " + formatTime(elapsedMinutes) + " : " + formatTime(elapsedSeconds));
-
-                       timeLabel.paintImmediately(timeLabel.getVisibleRect());
-                       
-                       try
-                       {
-                           t.sleep(500);
-                           startButton.setSelected(false);
-                           
-                       }
-                       catch(InterruptedException sleepError){}  
-                       
-                       if(!buttonGainFocus)
-                       {
-                           buttonClicked = false;
-                           break;
-                       }
-                       //System.out.println(elapsedHours + " : " + elapsedMinutes + " : " + elapsedSeconds);
-                }
-
-            }
-        });
-        */
-        
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);      
         
         startButton.addActionListener(new ActionListener()
         {
@@ -245,26 +162,13 @@ public class StopwatchActivity extends JFrame
                 
                 double taskTime = hourMinute + Double.parseDouble(minute) + secondMinute;
                 
-                masterManager.addTimeToTask(taskName, taskTime);
+                masterManager.addMasterTask(taskName, taskTime);
+                window.dispose();
+                new SingleListActivity(listName);
 
             }
         });
-        
-        /*
-        while(!shutdown)
-        {
-            if (stopwatchRunning)
-            {
-                updateStopwatchTime();
-                try
-                {
-                    //stopwatch.sleep(100);
-                    TimeUnit.SECONDS.sleep(1);
-                }
-                catch(InterruptedException sleepError){System.out.println("exception");}
-            }           
-        }
-        */
+                
     }
     
     private String formatTime(long s)

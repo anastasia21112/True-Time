@@ -75,6 +75,7 @@ public class MasterTaskManager
             average = taskTime;
         }
             
+        average = (double)Math.round(average * Math.pow(10, 2)) / Math.pow(10, 2);
 
         return average;
    }

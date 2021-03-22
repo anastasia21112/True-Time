@@ -5,11 +5,13 @@ public class Task {
     
     private String taskName;
     private Double averageTime;
+    public static MasterTaskManager masterManager = new MasterTaskManager();
     
     public Task (String name, Double time)
     {
+        masterManager.addMasterTask(name, time);
         this.taskName = name;
-        this.averageTime = time;
+        this.averageTime = masterManager.calculateAverageTime(name, time);
     }
 
     public String getTaskName() {

@@ -90,7 +90,7 @@ public class SingleListActivity {
                 {
                     selectedTaskName = taskGroup.getSelection().getActionCommand();
                 }
-                new StopwatchActivity(selectedTaskName);
+                new StopwatchActivity(selectedTaskName, listName);
             }
         });
         window.add(timeTask, "1,7, 2, 7");
