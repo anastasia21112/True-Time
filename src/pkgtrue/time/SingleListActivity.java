@@ -37,6 +37,7 @@ public class SingleListActivity {
     
     public static JLabel totalTime = new JLabel("Total Time: 0");
     public static ListManager manager = new ListManager();
+    public static MasterTaskManager masterManager = new MasterTaskManager();
     
     public SingleListActivity(String listName)
     {
@@ -83,13 +84,14 @@ public class SingleListActivity {
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                closeGUI();
-                String selectedTaskName = "";
+                String selectedTaskName;
                 if(taskGroup.getSelection() != null)
                 {
                     selectedTaskName = taskGroup.getSelection().getActionCommand();
+                    closeGUI();
+                    new StopwatchActivity(selectedTaskName, listName);
                 }
-                new StopwatchActivity(selectedTaskName);
+                
             }
         });
         window.add(timeTask, "1,7, 2, 7");
@@ -97,8 +99,36 @@ public class SingleListActivity {
         JButton deleteTask = new JButton("Delete Task");
         window.add(deleteTask, "4,7, 5,7");
         
-        JButton plusButton = new JButton("Delete List");
-        window.add(plusButton, "1,9, 5, 9");
+        deleteTask.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                String selectedTaskName = taskGroup.getSelection().getActionCommand();
+                manager.deleteTask(listName, selectedTaskName);
+                
+                taskPanel.removeAll();
+                displayContents(manager.returnContents(listName));
+                taskScroll.validate();
+                taskScroll.repaint();
+            }
+        });
+                
+        
+        JButton deleteListButton = new JButton("Delete List");
+        window.add(deleteListButton, "1,9, 5, 9");
+        
+        deleteListButton.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                manager.deleteList(listName);
+                
+                closeGUI();
+                new ListOfLists();
+            }
+        });
 
         window.add(taskScroll,"1,5, 5, 5");
         
@@ -151,5 +181,7 @@ public class SingleListActivity {
         }
        
     }
+    
+    
 
 }
