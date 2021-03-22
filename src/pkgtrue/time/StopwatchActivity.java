@@ -203,6 +203,16 @@ public class StopwatchActivity extends JFrame
             }
         });
         
+        resetButton.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                
+                timeLabel.setText("00 : 00 : 00");
+            }
+        });
+        
         backButton.addActionListener(new ActionListener()
         {
             @Override
@@ -219,7 +229,21 @@ public class StopwatchActivity extends JFrame
             public void actionPerformed(ActionEvent e)
             {
                 setShutdown(true);
+                String elapsedTime = timeLabel.getText();
                 
+                int indexComma1 = elapsedTime.indexOf(":");
+                int indexComma2 = elapsedTime.indexOf(":", indexComma1 + 1);
+                
+                String hour = elapsedTime.substring(0, indexComma1);
+                String minute = elapsedTime.substring(indexComma1 + 2, indexComma2 - 1);
+                String second = elapsedTime.substring(indexComma2 + 2);
+                
+                double hourMinute = Double.parseDouble(hour) * 60;
+                double secondMinute = (Double.parseDouble(second) / 60);
+                
+                double taskTime = hourMinute + Double.parseDouble(minute) + secondMinute;
+                
+                //add to master map get name from the label at the top with task name
             }
         });
         
@@ -251,9 +275,6 @@ public class StopwatchActivity extends JFrame
     {
         ArrayList<Integer> elapsedTime = stopwatchThread.getTime(stopwatchStartTime);
         String time = formatTime(elapsedTime.get(0)) + " : " + formatTime(elapsedTime.get(1)) + " : " + formatTime(elapsedTime.get(2));
-        
-        System.out.println(time); 
-        System.out.println("test");
         
         timeLabel.setText(time);
         
