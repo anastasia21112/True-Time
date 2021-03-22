@@ -37,6 +37,7 @@ public class SingleListActivity {
     
     public static JLabel totalTime = new JLabel("Total Time: 0");
     public static ListManager manager = new ListManager();
+    public static MasterTaskManager masterManager = new MasterTaskManager();
     
     public SingleListActivity(String listName)
     {
@@ -113,8 +114,20 @@ public class SingleListActivity {
         });
                 
         
-        JButton plusButton = new JButton("Delete List");
-        window.add(plusButton, "1,9, 5, 9");
+        JButton deleteListButton = new JButton("Delete List");
+        window.add(deleteListButton, "1,9, 5, 9");
+        
+        deleteListButton.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                manager.deleteList(listName);
+                
+                closeGUI();
+                new ListOfLists();
+            }
+        });
 
         window.add(taskScroll,"1,5, 5, 5");
         

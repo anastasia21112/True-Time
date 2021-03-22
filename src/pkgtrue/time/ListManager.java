@@ -22,6 +22,12 @@ public class ListManager {
         listManager.put(listName, empty);
     }
     
+    public void deleteList(String listName)
+    {
+       
+        listManager.remove(listName);
+    }
+    
     public void addTask(String listName, String taskName, Double time)
     {
         Task temp = new Task(taskName, time);

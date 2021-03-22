@@ -79,6 +79,7 @@ public class MasterTaskManager
         return average;
    }
    
+   
    public void addTimeToTask(String taskName, Double time)
    {
        allTasks.get(taskName).add(time);
