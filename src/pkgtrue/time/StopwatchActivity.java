@@ -187,6 +187,7 @@ public class StopwatchActivity extends JFrame
             @Override
             public void actionPerformed(ActionEvent e)
             {
+                stopwatchThread = newStopwatch(newStopwatch(stopwatchThread));
                 setStopwatchRunning(true);
                 stopwatchThread.startThread();
                 stopwatchStartTime = System.currentTimeMillis();
@@ -200,7 +201,7 @@ public class StopwatchActivity extends JFrame
             public void actionPerformed(ActionEvent e)
             {
                 setStopwatchRunning(false);
-                stopwatchThread.stop();
+                stopwatchThread.stopThread();
                 
             }
         });
@@ -249,6 +250,10 @@ public class StopwatchActivity extends JFrame
                 
                 
                 //add to master map get name from the label at the top with task name
+                
+                 masterManager.addMasterTask(taskName, taskTime);
+                window.dispose();
+                new SingleListActivity(listName);
             }
         });
         
@@ -278,11 +283,10 @@ public class StopwatchActivity extends JFrame
     
     public void updateStopwatchTime()
     {
-        ArrayList<Integer> elapsedTime = stopwatchThread.getTime(stopwatchStartTime);
+        ArrayList<Integer> elapsedTime = stopwatchThread.getTime();
         String time = formatTime(elapsedTime.get(0)) + " : " + formatTime(elapsedTime.get(1)) + " : " + formatTime(elapsedTime.get(2));
         
         timeLabel.setText(time);
-        
         timeLabel.paintImmediately(timeLabel.getVisibleRect());
 
         
@@ -302,6 +306,11 @@ public class StopwatchActivity extends JFrame
 
     public void setStopwatchRunning(boolean stopwatchRunning) {
         this.stopwatchRunning = stopwatchRunning;
+    }
+    
+    public Stopwatch newStopwatch(Stopwatch previousWatch)
+    {
+        return new Stopwatch(this, previousWatch.getStartTime());
     }
     
         
