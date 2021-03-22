@@ -28,6 +28,33 @@ public class ListManager {
         listManager.get(listName).add(temp);
     }
     
+    public void deleteTask(String listName, String taskName)
+    {
+        int indexofRemoval = findTask(listName, taskName);
+        listManager.get(listName).remove(indexofRemoval);
+    }
+    
+    public int findTask(String listName, String taskName)
+    {
+        int index = -2;
+        boolean found = false;
+        for(int i = 0; i < this.listManager.get(listName).size() && !found; i++)
+        {
+            Task temp = (Task) this.listManager.get(listName).get(i);
+            if(taskName.equals(temp.getTaskName()))
+            {
+                index = i;
+                found = true;
+            }
+            else
+            {
+                index = -1;
+            }
+        }
+        
+        return index;
+    }
+    
     public ArrayList keySet()
     {
         // Places all keys in an arraylist of type String

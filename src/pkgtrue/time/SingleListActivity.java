@@ -97,6 +97,22 @@ public class SingleListActivity {
         JButton deleteTask = new JButton("Delete Task");
         window.add(deleteTask, "4,7, 5,7");
         
+        deleteTask.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                String selectedTaskName = taskGroup.getSelection().getActionCommand();
+                manager.deleteTask(listName, selectedTaskName);
+                
+                taskPanel.removeAll();
+                displayContents(manager.returnContents(listName));
+                taskScroll.validate();
+                taskScroll.repaint();
+            }
+        });
+                
+        
         JButton plusButton = new JButton("Delete List");
         window.add(plusButton, "1,9, 5, 9");
 
@@ -151,5 +167,7 @@ public class SingleListActivity {
         }
        
     }
+    
+    
 
 }

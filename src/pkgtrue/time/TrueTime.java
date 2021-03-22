@@ -17,10 +17,10 @@ public class TrueTime {
      */
     public static void main(String[] args) {
         
-        //new LoginActivity();
+        new LoginActivity();
         //new ListOfLists();
-        new StopwatchActivity("test");
-        //new SingleListActivity("test");
+        //new StopwatchActivity("test");
+        
     }
     
 }
