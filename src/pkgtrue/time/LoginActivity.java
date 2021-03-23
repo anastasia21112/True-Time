@@ -19,6 +19,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import layout.TableLayout;
 import javax.swing.*;
+import static pkgtrue.time.CreateNewTask.window;
 
 /**
  *
@@ -75,8 +76,15 @@ public class LoginActivity extends JFrame{
         public void actionPerformed(ActionEvent e) {
             username = usernameField.getText();
             password = passwordField.getText();
-            closeGUI();
-            new UserDashboard();
+            
+            if(username.equals("admin") && password.equals("admin"))
+            {
+                closeGUI();
+                new UserDashboard();
+            } else {
+                 closeGUI();
+                 JOptionPane.showMessageDialog(new LoginActivity(), "Authentication Failed", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
         
     }
