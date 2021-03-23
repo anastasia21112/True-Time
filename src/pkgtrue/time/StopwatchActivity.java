@@ -164,7 +164,7 @@ public class StopwatchActivity extends JFrame
                 
                 double taskTime = hourMinute + Double.parseDouble(minute) + secondMinute;
 
-                masterManager.addTimeToTask(taskName, taskTime);
+                
                 
                 
                 //add to master map get name from the label at the top with task name

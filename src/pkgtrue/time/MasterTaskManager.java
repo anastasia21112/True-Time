@@ -81,10 +81,6 @@ public class MasterTaskManager
    }
    
    
-   public void addTimeToTask(String taskName, Double time)
-   {
-       allTasks.get(taskName).add(time);
-   }
 
     public String toString()
     {
