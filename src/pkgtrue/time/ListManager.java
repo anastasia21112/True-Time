@@ -9,12 +9,12 @@ public class ListManager {
     
     //HashMap<String, ArrayList<Task>>
     //HashMap<listName, arrayList of Tasks> 
-    public static HashMap<String, ArrayList<Task>> listManager;
+    public static HashMap<String, ArrayList<Task>> listManager = new HashMap<String, ArrayList<Task>>();
     public static MasterTaskManager masterManager = new MasterTaskManager();
     
     public ListManager()
     {
-          listManager = new HashMap<String, ArrayList<Task>>();
+           
     }
     
     public void addList(String listName)
