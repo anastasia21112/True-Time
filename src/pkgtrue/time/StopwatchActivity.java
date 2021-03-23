@@ -168,10 +168,6 @@ public class StopwatchActivity extends JFrame
                 
                 
                 //add to master map get name from the label at the top with task name
-                
-                 masterManager.addMasterTask(taskName, taskTime);
-                window.dispose();
-                new SingleListActivity(listName);
 
                 masterManager.addMasterTask(taskName, taskTime);
                 manager.updateTask(listName, taskName);

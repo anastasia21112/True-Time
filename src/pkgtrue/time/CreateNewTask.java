@@ -105,7 +105,7 @@ public class CreateNewTask {
 
             if(!repeat)
             {
-                masterManager.addMasterTask(listName, time);
+                masterManager.addMasterTask(taskName, time);
                 // this needs to be fixed becuase the time added needs to be the average
                 manager.addTask(listName, taskName, masterManager.calculateAverageTime(taskName, time));
                 closeGUI();

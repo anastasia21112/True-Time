@@ -61,6 +61,7 @@ public class SingleListActivity {
         
         window.add(totalTime, "1, 4, 5");
         totalTime.setText("Total Time: " + manager.getTotalTime(listName));
+        
         JButton addTask = new JButton("Add Task");
         addTask.addActionListener(new ActionListener()
         {
